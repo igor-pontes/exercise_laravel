@@ -1,0 +1,57 @@
+body {
+    margin: 0; /* Remove default body margin */
+    display: flex; /* Use flexbox layout */
+    justify-content: center; /* Horizontally center the child element */
+    align-items: center;
+}
+
+.content {
+    width: 1000px;
+    height: 100%;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    padding: 20px;
+    text-align: center;
+}
+
+.users {
+    width: 300px;
+    float: left;
+    text-align: center;
+    display: flex; /* Use flexbox layout */
+    flex-wrap: wrap;
+    justify-content: center; /* Horizontally center the child element */
+    align-items: center;
+}
+
+.jobs {
+    width: 700px;
+    float: left;
+    text-align: center;
+    display: flex; /* Use flexbox layout */
+    flex-wrap: wrap;
+    justify-content: center; /* Horizontally center the child element */
+    align-items: center;
+}
+
+.box {
+    border-radius: 5px;
+    background-color: white;
+    border: 3px solid red;
+    text-wrap: balance;
+    overflow-wrap: break-word;
+    justify-content: center; /* Horizontally center the child element */
+    width: 300px;
+    margin: 10px;
+}
+
+.box-jobs {
+    border-radius: 5px;
+    background-color: white;
+    border: 1px solid red;
+    text-wrap: balance;
+    overflow-wrap: break-word;
+    justify-content: center; /* Horizontally center the child element */
+    width: 270px;
+    margin: 10px;
+}
