@@ -79,7 +79,6 @@
             unassigned_tasks.value = values[1].data.data;
             users.value.map(function(user) {
                 getUserTasks(user.id);
-                console.log(users_tasks.value[user.id]);
             })
             isLoading.value = false;
         })
@@ -121,8 +120,6 @@
         router.go(-2);
     }
 
-    updateData();
-
 </script>
 <template>
     <div class="content">
@@ -136,10 +133,14 @@
         <h1>Hello to the dashboard, {{user.name}}!</h1>
         <hr>
         <div v-if="route.meta.newtask">
+            {{ isLoading = true }}
             <NewTaskView/>
         </div>
         <div v-else>
-            <div v-if="isLoading">Loading data...</div>
+            <div v-if="isLoading">
+                {{ updateData() }}
+                Loading data...
+            </div>
             <div v-else>
                 <div class="jobs">
                     <div draggable="true" @dragstart="dragStart" @dragend="dragEnd" class="box-jobs" v-for="task in unassigned_tasks" :key="task.id" :data-taskId="task.id">
