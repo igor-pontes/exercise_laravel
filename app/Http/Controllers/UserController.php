@@ -27,11 +27,12 @@ class UserController extends Controller
     public function store(Request $request): JsonResponse
     {
         $attributes = $request->only([
-            'username',
+            'name',
             'email'
         ]);
 
        return response()->json([ 'data' =>  $this->repository->createUser(
+           // array_merge($attributes, ['password' => Hash::make($request->input('password'))],))],
            array_merge($attributes, ['password' => Hash::make($request->input('password'))],))],
            Response::HTTP_CREATED
        );
@@ -39,7 +40,7 @@ class UserController extends Controller
 
     public function getUserByEmail($email): JsonResponse
     {
-        $user = User::where('email', $email)->firstOrFail();
+        $user = User::where('email', $email)->firstOrFail()->makeVisible(['password']);
         return response()->json(['data' => $user ], Response::HTTP_CREATED);
     }
 

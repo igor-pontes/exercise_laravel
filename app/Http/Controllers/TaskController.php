@@ -35,13 +35,12 @@ class TaskController extends Controller
     {
         // todo
         $attributes = $request->only([
-            'username',
-            'email'
+            'title',
+            'task',
+            'deadline',
         ]);
 
-       return response()->json([ 'data' =>  $this->repository->createTask(
-           array_merge($attributes))], Response::HTTP_CREATED
-       );
+       return response()->json([ 'data' =>  $this->repository->createTask($attributes)], Response::HTTP_CREATED);
     }
 
     public function getUserTasks(User $user): JsonResponse
@@ -60,7 +59,7 @@ class TaskController extends Controller
     public function update(Task $task, Request $request): JsonResponse
     {
         $attributes = $request->only([
-            // 'status',
+            'status',
             'user_id',
             // 'deadline',
             // 'title',

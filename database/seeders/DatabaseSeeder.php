@@ -15,11 +15,12 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         // User::factory(10)->create();
-        $this->call([TaskSeeder::class]);
+        // $this->call([TaskSeeder::class]);
         // User::factory()->create([
         //     'name' => 'Admin',
-        //     'email' => 'test@test.com',
+        //     'email' => 'admin@admin.com',
         //     'rank' => 1,
+        //     'password' => 'admin'
         // ]);
     }
 }

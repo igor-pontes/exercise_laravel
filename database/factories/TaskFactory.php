@@ -18,9 +18,8 @@ class TaskFactory extends Factory
     public function definition(): array
     {
         return [
-            'status' => 0,
             'task' => Str::random(30),
-            'deadline' => 0,
+            'deadline' => fake()->dateTimeThisMonth(),
         ];
     }
 }

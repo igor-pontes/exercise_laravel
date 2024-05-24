@@ -6,10 +6,10 @@ import RegisterView from '../components/RegisterView.vue'
 
 function guardHome(to, from, next) {
     var isAuthenticated = false;
-    if(localStorage.getItem('user')) {
+    const user = JSON.parse(localStorage.getItem("user"));
+    if(user) {
         isAuthenticated = true;
-        const user_rank = JSON.parse(localStorage.getItem("user")).rank;
-        if(user_rank == 1) {
+        if(user.rank == 1) {
             next('/dashboard');
             return;
         }
@@ -22,7 +22,8 @@ function guardHome(to, from, next) {
 
 function guardDashboard(to, from, next) {
     var isAuthenticated = false;
-    if(localStorage.getItem('user'))
+    const user = JSON.parse(localStorage.getItem("user"));
+    if(user && user.rank == 1)
         isAuthenticated = true;
     if(isAuthenticated)
         next();
@@ -57,7 +58,15 @@ const router = createRouter({
         name: "dashboard",
         beforeEnter: guardDashboard,
         component: DashboardView,
-        meta: { title: "Dashboard" }
+        props: { default: true },
+        meta: { title: "Dashboard", default: true }
+    },
+    {
+        path: "/dashboard/newtask",
+        name: "newtask",
+        beforeEnter: guardDashboard,
+        component: DashboardView,
+        meta: { title: "Dashboard - New Task", newtask: true }
     },
     {
         path: "/login",
