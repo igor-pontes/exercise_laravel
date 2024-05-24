@@ -74,8 +74,13 @@
             axios.get('api/users/'),
             axios.get('api/tasks/unassigned'),
         ]).then(function(values) {
+            console.log(values[0].data.data);
             users.value = values[0].data.data;
             unassigned_tasks.value = values[1].data.data;
+            users.value.map(function(user) {
+                getUserTasks(user.id);
+                console.log(users_tasks.value[user.id]);
+            })
             isLoading.value = false;
         })
     }
@@ -152,7 +157,7 @@
                         <h3>{{ user.name }}</h3>
                         <hr>
                         <div class="user-jobs">
-                            {{ getUserTasks(user.id) }}
+                            <!-- {{ getUserTasks(user.id) }} -->
                             <div class="box-jobs" v-for="task in users_tasks[user.id]" :key="task.id" :data-taskId="task.id">
                                 <h5>{{ task.title }}</h5>
                                 <hr>
